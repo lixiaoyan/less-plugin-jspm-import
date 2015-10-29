@@ -17,10 +17,12 @@ exports.factory = function(less) {
       return this.supports(filename);
     }
     resolve(filename) {
-      return this.loader.normalize(filename.slice(this.options.prefix.length));
+      return this.loader.normalize(filename.slice(this.options.prefix.length)).then((filename) => (
+        filename.replace(/\.js$/, "")
+      ));
     }
     resolveSync(filename) {
-      return this.loader.normalizeSync(filename.slice(this.options.prefix.length));
+      return this.loader.normalizeSync(filename.slice(this.options.prefix.length)).replace(/\.js$/, "");
     }
     loadFile(filename, ...args) {
       return this.resolve(filename).then((filename) => (
