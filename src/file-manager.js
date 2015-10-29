@@ -3,6 +3,7 @@ var jspm = require("jspm");
 exports.factory = function(less) {
   return class extends less.FileManager {
     constructor(options) {
+      super();
       this.options = options;
       this.loader = new jspm.Loader();
     }
@@ -13,10 +14,10 @@ exports.factory = function(less) {
       return this.supports(filename);
     }
     resolve(filename) {
-      return this.loader.normalize(filename);
+      return this.loader.normalize(filename.slice(this.options.prefix.length));
     }
     resolveSync(filename) {
-      return this.loader.normalizeSync(filename);
+      return this.loader.normalizeSync(filename.slice(this.options.prefix.length));
     }
     loadFile(filename, ...args) {
       return this.resolve(filename).then((filename) => (

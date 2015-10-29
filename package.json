@@ -26,6 +26,9 @@
     "build": "babel --optional runtime src -d lib",
     "prepublish": "npm run-script build"
   },
+  "dependencies": {
+    "babel-runtime": "^5.8.29"
+  },
   "peerDependencies": {
     "jspm": "*",
     "less": "^2.0"
