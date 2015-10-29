@@ -6,6 +6,9 @@ exports.factory = function(less) {
       super();
       this.options = options;
       this.loader = new jspm.Loader();
+      this.loader.config({
+        defaultJSExtensions: false
+      });
     }
     supports(filename) {
       return filename.startsWith(this.options.prefix);
