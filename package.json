@@ -1,6 +1,6 @@
 {
   "name": "less-plugin-jspm-import",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Less plugin for resolving jspm packages.",
   "keywords": [
     "less",
