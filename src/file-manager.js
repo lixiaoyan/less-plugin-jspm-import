@@ -1,4 +1,9 @@
+var path = require("path");
 var jspm = require("jspm");
+
+function resolveURL(filename) {
+  return filename.replace(/^file:\/\//, "").replace(/^([a-zA-Z])\//, "$1:/").replace(/\//g, path.sep);
+}
 
 exports.factory = function(less) {
   return class extends less.FileManager {
@@ -18,11 +23,11 @@ exports.factory = function(less) {
     }
     resolve(filename) {
       return this.loader.normalize(filename.slice(this.options.prefix.length)).then((filename) => (
-        filename.replace(/\.js$/, "")
+        resolveURL(filename.replace(/\.js$/, ""))
       ));
     }
     resolveSync(filename) {
-      return this.loader.normalizeSync(filename.slice(this.options.prefix.length)).replace(/\.js$/, "");
+      return resolveURL(this.loader.normalizeSync(filename.slice(this.options.prefix.length)).replace(/\.js$/, ""));
     }
     loadFile(filename, ...args) {
       return this.resolve(filename).then((filename) => (
