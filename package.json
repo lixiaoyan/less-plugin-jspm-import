@@ -1,0 +1,36 @@
+{
+  "name": "less-plugin-jspm-import",
+  "version": "0.0.0",
+  "description": "Less plugin for resolving jspm packages.",
+  "keywords": [
+    "less",
+    "jspm",
+    "plugin"
+  ],
+  "homepage": "https://github.com/lixiaoyan/less-plugin-jspm-import",
+  "bugs": {
+    "url": "https://github.com/lixiaoyan/less-plugin-jspm-import/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "XiaoYan Li",
+    "email": "lxy.lixiaoyan@gmail.com",
+    "url": "https://github.com/lixiaoyan"
+  },
+  "main": "./index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lixiaoyan/less-plugin-jspm-import"
+  },
+  "scripts": {
+    "build": "babel --optional runtime src -d lib",
+    "prepublish": "npm run-script build"
+  },
+  "peerDependencies": {
+    "jspm": "*",
+    "less": "^2.0"
+  },
+  "devDependencies": {
+    "babel": "^5.8.29"
+  }
+}
