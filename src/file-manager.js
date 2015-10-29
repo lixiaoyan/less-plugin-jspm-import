@@ -21,21 +21,23 @@ exports.factory = function(less) {
     supportsSync(filename) {
       return this.supports(filename);
     }
-    resolve(filename) {
+    resolve(filename, currentDirectory) {
       return this.loader.normalize(filename.slice(this.options.prefix.length)).then((filename) => (
-        resolveURL(filename.replace(/\.js$/, ""))
+        path.relative(currentDirectory, resolveURL(filename.replace(/\.js$/, "")))
       ));
     }
-    resolveSync(filename) {
-      return resolveURL(this.loader.normalizeSync(filename.slice(this.options.prefix.length)).replace(/\.js$/, ""));
+    resolveSync(filename, currentDirectory) {
+      filename = this.loader.normalizeSync(filename.slice(this.options.prefix.length));
+      return path.relative(currentDirectory, resolveURL(filename.replace(/\.js$/, "")));
     }
-    loadFile(filename, ...args) {
-      return this.resolve(filename).then((filename) => (
-        super.loadFile(filename, ...args)
+    loadFile(filename, currentDirectory, ...args) {
+      return this.resolve(filename, currentDirectory).then((filename) => (
+        super.loadFile(filename, currentDirectory, ...args)
       ));
     }
-    loadFileSync(filename, ...args) {
-      return super.loadFileSync(this.resolveSync(filename), ...args);
+    loadFileSync(filename, currentDirectory, ...args) {
+      filename = this.resolveSync(filename, currentDirectory);
+      return super.loadFileSync(filename, currentDirectory, ...args);
     }
     tryAppendExtension(path) {
       return path;
