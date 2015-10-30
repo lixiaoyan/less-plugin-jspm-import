@@ -39,11 +39,5 @@ exports.factory = function(less) {
       filename = this.resolveSync(filename, currentDirectory);
       return super.loadFileSync(filename, currentDirectory, ...args);
     }
-    tryAppendExtension(path) {
-      return path;
-    }
-    tryAppendLessExtension(path) {
-      return path;
-    }
   };
 };
