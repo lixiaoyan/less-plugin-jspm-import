@@ -4,6 +4,14 @@
 
 Less plugin for resolving jspm packages.
 
+## Install
+
+``` shell
+$ npm install less-plugin-jspm-import
+```
+
+## Usage
+
 ``` less
 @import "jspm:bootstrap-less/bootstrap/index";
 ```
