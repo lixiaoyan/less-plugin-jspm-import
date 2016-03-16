@@ -2,7 +2,7 @@ var path = require("path");
 var jspm = require("jspm");
 
 function resolveURL(filename) {
-  return filename.replace(/^file:\/\//, "").replace(/^([a-zA-Z])\//, "$1:/").replace(/\//g, path.sep);
+  return filename.replace(/^file:\/\//, "").replace(/^\/([a-zA-Z]:)\//, "$1/").replace(/^([a-zA-Z])\//, "$1:/").replace(/\//g, path.sep);
 }
 
 exports.factory = function(less) {
